@@ -26,14 +26,14 @@ import com.google.api.client.util.ExponentialBackOff;
  * @author jofrantoba
  */
 public class Tester {
-	private final static String FIREBASE_SERVER_KEY="AIzaSyCKB1cXore70KWHAswFW7kqRKoF_e_tXng";
+	private final static String FIREBASE_SERVER_KEY="AIzaSy00000000000000000000000Xng";
     public static void main(String arg[]) throws IOException{     	
     	NotificationMessage not=new NotificationMessage();   
     	not.setTargetTo("/topics/news");
-    	not.setOptionRestrictedPackageName("com.indiana");
+    	not.setOptionRestrictedPackageName("com.package");
     	not.setOptionPriority(10);    	
     	AndroidNotificationPayLoad payLoad=new AndroidNotificationPayLoad();
-    	payLoad.setTitle("INDIANT");
+    	payLoad.setTitle("JOFRANTOBA");
     	payLoad.setBody("HOLA MUNDO");
     	payLoad.setColor("#ffffff");
     	DataPayLoad dataPayLoad=new DataPayLoad();

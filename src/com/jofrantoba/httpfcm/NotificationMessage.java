@@ -1,5 +1,6 @@
 package com.jofrantoba.httpfcm;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.json.JSONObject;
@@ -179,4 +180,28 @@ public class NotificationMessage {
 		return message;
 	}
 	
+	public Collection<StatusIds> viewStatusIds(Collection<Result> resultados){
+		Collection<StatusIds> statusIds=new ArrayList<StatusIds>();
+		ArrayList<String> ids=(ArrayList<String>)registrationIds;
+		ArrayList<Result> results=(ArrayList<Result>)resultados;
+		for(int i=0;i<results.size();i++){
+			Result result=results.get(i);
+			String id=ids.get(i);
+			if(result.getError()!=null && !result.getError().isEmpty()){
+				StatusIds bean=new StatusIds();
+				bean.setId(id);
+				bean.setStatusMessage(result.getError());
+				bean.setIsCorrect(false);
+				statusIds.add(bean);
+			}else if(result.getMessage_id()!=null && !result.getMessage_id().isEmpty()){
+				StatusIds bean=new StatusIds();
+				bean.setId(id);
+				bean.setStatusMessage(result.getMessage_id());
+				bean.setIsCorrect(true);	
+				bean.setNewId(result.getRegistration_id());
+				statusIds.add(bean);
+			}
+		}
+		return statusIds;
+	}
 }

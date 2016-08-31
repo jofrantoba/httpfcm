@@ -1,5 +1,7 @@
 package com.jofrantoba.httpfcm;
 
+import java.util.Collection;
+
 import org.json.JSONObject;
 /**
 *
@@ -8,14 +10,13 @@ import org.json.JSONObject;
 public class IosNotificationPayLoad {
 	private String title;
 	private String body;
-	private String icon;
 	private String sound;
 	private String badge;
 	private String clickAction;
 	private String bodyLocKey;
-	private String bodyLocArgs;
+	private Collection<String> bodyLocArgs;
 	private String titleLocKey;
-	private String titleLocArgs;
+	private Collection<String> titleLocArgs;
 	private String payload;
 	
 	public String getTitle() {
@@ -29,12 +30,6 @@ public class IosNotificationPayLoad {
 	}
 	public void setBody(String body) {
 		this.body = body;
-	}
-	public String getIcon() {
-		return icon;
-	}
-	public void setIcon(String icon) {
-		this.icon = icon;
 	}
 	public String getSound() {
 		return sound;
@@ -60,10 +55,10 @@ public class IosNotificationPayLoad {
 	public void setBodyLocKey(String bodyLocKey) {
 		this.bodyLocKey = bodyLocKey;
 	}
-	public String getBodyLocArgs() {
+	public Collection<String> getBodyLocArgs() {
 		return bodyLocArgs;
 	}
-	public void setBodyLocArgs(String bodyLocArgs) {
+	public void setBodyLocArgs(Collection<String> bodyLocArgs) {
 		this.bodyLocArgs = bodyLocArgs;
 	}
 	public String getTitleLocKey() {
@@ -72,10 +67,10 @@ public class IosNotificationPayLoad {
 	public void setTitleLocKey(String titleLocKey) {
 		this.titleLocKey = titleLocKey;
 	}
-	public String getTitleLocArgs() {
+	public Collection<String> getTitleLocArgs() {
 		return titleLocArgs;
 	}
-	public void setTitleLocArgs(String titleLocArgs) {
+	public void setTitleLocArgs(Collection<String> titleLocArgs) {
 		this.titleLocArgs = titleLocArgs;
 	}
 	
@@ -86,9 +81,6 @@ public class IosNotificationPayLoad {
 		}
 		if(body!=null && !body.isEmpty()){
 			obj.put(EnumNotificationPayLoad.paramBody.getTag(), body);					
-		}
-		if(icon!=null && !icon.isEmpty()){
-			obj.put(EnumNotificationPayLoad.paramIcon.getTag(), icon);					
 		}
 		if(sound!=null && !sound.isEmpty()){
 			obj.put(EnumNotificationPayLoad.paramSound.getTag(), sound);					

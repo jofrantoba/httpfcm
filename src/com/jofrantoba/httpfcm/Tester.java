@@ -19,7 +19,7 @@ import com.google.gson.Gson;
  * @author jofrantoba
  */
 public class Tester {
-	private final static String FIREBASE_SERVER_KEY="BAIzaStyCKB1cXore70sKWHAswFW7kqRKoF_e_tXngrz";
+	private final static String FIREBASE_SERVER_KEY="AIzaSyCKB1cXore70KWHAswFW7kqRKoF_e_tXng";
     public static void main(String arg[]) throws IOException{     	
     	NotificationMessage not=new NotificationMessage();   
     	//not.setTargetTo("e1iMVdE_JMM:APA91bH-a08EINdsPgBTyxOz3NOkFlPPnYBpufF9Rs_9f4gSWntR2AprYXOovkdsYnZj_RuqkmE9U9VHTbmi-iyZTfCstdsMb4ECu6d_xya6YOtWIvBt4Ll0Hi0vx3IbAeZoLc995awC");
@@ -46,7 +46,7 @@ public class Tester {
     	dataPayLoad.add("idNotification", 121354654);
     	not.setPayLoadData(dataPayLoad.buildPayLoad());
     	not.setPayLoadNotification(payLoad.buildPayLoadAndroid());    	
-    	FcmConection cnx=new FcmConection(FIREBASE_SERVER_KEY,EnumContentType.JSON.getValue());    	    	
+    	HttpFcmConection cnx=new HttpFcmConection(FIREBASE_SERVER_KEY,EnumContentType.JSON.getValue());    	    	
     	DataResponse dataResponse=(DataResponse)cnx.sendNotificationHttp(not).get(EnumResponse.RESPONSEMESSAGE.getValue());
     	Collection<StatusIds> status=not.viewStatusIds(dataResponse.getResults());
     	Iterator<StatusIds> i=status.iterator();

@@ -12,21 +12,71 @@ public class NotificationMessage {
 	private final static Integer MINTIMETOLIVE=0;
 	private final static Integer MAXTIMETOLIVE=2419200;
 	private String message;
+	/**
+	 * registrationIds solo se usa con el protocolo http
+	 * para xmpp usar el atributo to
+	 * */
 	private Collection<String> registrationIds;
-	private String to;	
+	/**
+	 * atributo http y xmpp
+	 */
+	private String to;
+	/**
+	 * atributo http y xmpp
+	 */
 	private String condition;
+	/**
+	 * messageId solo se usa con el protocolo xmpp
+	 */
+	private String messageId;
+	/**
+	 * atributo http y xmpp
+	 */
 	private String collapseKey;
+	/**
+	 * atributo http y xmpp
+	 */
 	private Integer priority;
+	/**
+	 * atributo http y xmpp
+	 */
 	private Boolean contentAvailable;
+	/**
+	 * atributo http y xmpp
+	 */
 	private Boolean delayWhileIdle;
-	private Integer timeToLive;	
+	/**
+	 * atributo http y xmpp
+	 */
+	private Integer timeToLive;
+	/**
+	 * deliveryReceiptRequested solo se usa con el protocolo xmpp
+	 */
+	private Boolean deliveryReceiptRequested;
+	/**
+	 * restrictedPackageName aparece solo en la doc http, es posible que no
+	 * trabaje con xmpp 
+	 * */
 	private String restrictedPackageName;
+	/**
+	 * atributo http y xmpp
+	 */
 	private Boolean dryRun;
+	/**
+	 * atributo http y xmpp
+	 */
 	private String data;
+	/**
+	 * atributo http y xmpp
+	 */
 	private String notification;	
 	private JSONObject jsonObjectData;
 	private JSONObject jsonObjectNotification;
 	
+	/**
+	 * Solo usar con protocolo HTTP
+	 * @param registrationIds
+	 */
 	public void setTargetRegistrationIds(Collection<String> registrationIds){
 		this.registrationIds=registrationIds;		
 	}
@@ -37,6 +87,10 @@ public class NotificationMessage {
 	
 	public void setTargetCondition(String condition){
 		this.condition=condition;		
+	}
+	
+	public void setOptionMessageId(String messageId){
+		this.messageId=messageId;		
 	}
 	
 	public void setOptionCollapseKey(String collapseKey){
@@ -66,6 +120,18 @@ public class NotificationMessage {
 		this.timeToLive=timeToLive;		
 	}
 	
+	/**
+	 * Solo usar cuando se usa el protocolo XMPP 
+	 * @param deliveryReceiptRequested
+	 */
+	public void setOptionDeliveryReceiptRequested(Boolean deliveryReceiptRequested){
+		this.deliveryReceiptRequested=deliveryReceiptRequested;
+	}
+	
+	/**
+	 * La documentacion de firebase solo lo muestra que se usar con el protocolo HTTP
+	 * @param restrictedPackageName
+	 */
 	public void setOptionRestrictedPackageName(String restrictedPackageName){
 		this.restrictedPackageName=restrictedPackageName;		
 	}
@@ -95,6 +161,10 @@ public class NotificationMessage {
 	public String getCondition() {
 		return condition;
 	}
+		
+	public String getMessageId() {
+		return messageId;
+	}
 
 	public String getCollapseKey() {
 		return collapseKey;
@@ -111,7 +181,11 @@ public class NotificationMessage {
 	public Boolean getDelayWhileIdle() {
 		return delayWhileIdle;
 	}
-
+	
+	public Boolean getDeliveryReceiptRequested() {
+		return deliveryReceiptRequested;
+	}
+	
 	public Integer getTimeToLive() {
 		return timeToLive;
 	}
@@ -130,7 +204,7 @@ public class NotificationMessage {
 
 	public String getNotification() {
 		return notification;
-	}
+	}		
 
 	public String buildMessageNotification(){
 		JSONObject obj = new JSONObject();
@@ -141,6 +215,9 @@ public class NotificationMessage {
 		}
 		if(condition!=null && !condition.isEmpty()){
 			obj.put(EnumNotificationMessage.targetCondition.getTag(), condition);					
+		}
+		if(messageId!=null && !messageId.isEmpty()){
+			obj.put(EnumNotificationMessage.optionMessageId.getTag(), messageId);							
 		}
 		if(collapseKey!=null && !collapseKey.isEmpty()){
 			obj.put(EnumNotificationMessage.optionCollapseKey.getTag(), collapseKey);							
@@ -153,6 +230,9 @@ public class NotificationMessage {
 		}
 		if(delayWhileIdle!=null){
 			obj.put(EnumNotificationMessage.optionDelayWhileIdle.getTag(),delayWhileIdle);				
+		}
+		if(deliveryReceiptRequested!=null){
+			obj.put(EnumNotificationMessage.optionDeliveryReceiptRequest.getTag(),deliveryReceiptRequested);				
 		}
 		if(timeToLive!=null){
 			obj.put(EnumNotificationMessage.optionTimeToLive.getTag(),timeToLive);						

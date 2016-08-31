@@ -10,7 +10,9 @@ package com.jofrantoba.httpfcm;
  * @author jofrantoba
  */
 public enum EnumEndPoint {
-    FCMHTTPS("https","https://fcm.googleapis.com/fcm/send",443);
+    FCMHTTPS("https","https://fcm.googleapis.com/fcm/send",443),
+	FCMXMPPMODEPROD("xmpp","fcm-xmpp.googleapis.com",5235),
+	FCMXMPPMODEDEV("xmpp","fcm-xmpp.googleapis.com",5236);
     private final String protocol;
     private final String urlEndPoint;
     private final Integer port;
